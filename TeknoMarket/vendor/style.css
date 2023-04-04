@@ -1,0 +1,100 @@
+﻿body {
+
+}
+
+
+
+hr.new4 {
+    border: 1px solid red;
+}
+.card:hover .image {
+    transition-delay: 0.15s;
+    transform: scale(1.05);
+}
+
+
+
+.crsContainer {
+    margin-top: 2%;
+}
+
+.bannerHeight {
+    height: 250px;
+}
+
+.cardSpec {
+    border:none;
+}
+
+/*BODY*/
+
+
+.logo {
+    height:8rem;
+    width:10rem;
+}
+
+.footer-text {
+    text-decoration:none;
+}
+
+/*.search-form {
+    flex:1;
+}*/
+
+
+/* ALSDALSKDASKD*/
+
+
+.technological-category {
+    margin-top: 60px;
+}
+
+
+.category-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 7px;
+}
+
+
+.category-item {
+    width: 7%;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #76B900;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    margin: 10px;
+}
+
+    .category-item:hover {
+        transform: scale(1.05);
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .category-item:hover {
+        color: white;
+    }
+
+.category-image {
+    height: 20px;
+    margin-bottom: 5px;
+    margin: 5px; /* önceki değer: 20px /
+    / diğer stiller */
+}
+
+    .category-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+.category-title {
+    font-size: 10px;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.5s ease-in-out;
+    margin-top: 20px;
+}
