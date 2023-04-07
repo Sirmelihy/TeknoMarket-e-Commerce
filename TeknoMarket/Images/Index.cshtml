@@ -1,0 +1,340 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>                    
+    <link href="~/vendor/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/vendor/style.css" rel="stylesheet"/>
+    <script src="~/vendor/bootstrap.min.js"></script>
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="container crsContainer">
+        @*Bootstrap'in içerisinde sağdan ve soldan padding vermeye yarayan container sınıfını dahil edildi*@
+        <div id="carouselExample" class="carousel slide">
+            @*Bootstrap'in içinde carousel ve slide class'ları eklendi slide daha güzel bir geçiş için oluşturulmuş bir sınıf*@
+            <div class="carousel-inner">
+                @*carousel-inner carousel'in içeriği için oluşturulur*@
+                <a href="https://www.nvidia.com/tr-tr/">
+                    <div class="carousel-item active">
+                        @*carousel-item class özelliği içeriğin bir carousel ürünü oldugunu tanıtmak için verilir (active yazan ilk başlangıçta hangisinin gösterileceğini gösterir)*@
+                        <img src="~/Images/nvidiaBanner.jpg" class="d-block w-100 bannerHeight" alt="NVIDIA">       @*w-100 -> %100 genişlik vermek için kullanılıyor bannerHeight'ı yüksekliğini kendim ayarlamak için kendim oluşturdum style.css dosyası içinde özellikleri var*@
+                    </div>
+
+
+                </a>
+                <a href="https://www.apple.com/">
+                    @*tıklandığında siteye yönlendirmek için a href etiketi*@
+                    <div class="carousel-item">
+                        <img src="~/Images/iphone14.jpeg" class="d-block w-100 bannerHeight" alt="Iphone14" />
+                    </div>
+                </a>
+                <a href="https://www.samsung.com/>">
+                    <div class="carousel-item">
+                        <img src="~/Images/s22.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
+                    </div>
+                </a>
+            </div>
+            <div>
+                <section class="technological-category">
+
+                    <div class="category-container">
+                        <div class="category-item">
+                            <div class="category-image">
+                                <img src="~/Images/telefon.png" alt="Telefonlar">
+                            </div>
+                            <div class="category-title">Telefonlar</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-image">
+                                <img src="~/Images/bilgisayar.png" alt="Bilgisayar">
+                            </div>
+                            <div class="category-title">Bilgisayarlar</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-image">
+                                <img src="~/Images/oyunVeHobi.png" alt="Oyun ve Hobi">
+                            </div>
+                            <div class="category-title">Oyun ve Hobi</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-image">
+                                <img src="~/Images/Aksesuar.png" alt="Aksesuarlar">
+                            </div>
+                            <div class="category-title">Aksesuarlar</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-image">
+                                <img src="~/Images/cevre-birim.png" alt="Çevre Birimleri">
+                            </div>
+                            <div class="category-title">Çevre Birimleri</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            @*carousel kontrolleri için button ayarları detaylı bakmadım olduğu gibi yapıştırdım*@
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+    <div class="row" style="margin-top:2%">
+        @*listelenen ürünlerin başlığı için bir row etiketi koyuldu*@
+        <div class="col-1 d-flex justify-content-center">
+            @*col-1 etiketiyle 1/12 uzunluğu Telefonlar yazısı için ayrıldı (sonradan buraya tümünü gör özelliği eklenebilir. justify-content-center -> içeriği kolona tam olarak ortalamak için bootstrap özelliği)*@
+            <p>Telefonlar</p>
+        </div>
+        <div class="col-11">
+            @*kalan 11/12 genişliğe hr etiketiyle estetik durması açısından bir çizgi verildi*@
+            <hr class="new4"></hr>                                                                  @* new4 etiketi style.css dosyası içerisinde kendim verdiğim özellikerle kırmızıya boyadım değiştirilebilir*@
+        </div>
+
+    </div>
+    <div style="margin-top:2%">
+        @*margin-top:2% ile bulunan div ile üstündeki içerik arasında ekranın %2 boyutunda boşluk verildi*@
+        <div class="row">
+            @* ürünlerin düzgü listelenmesi için row etiketi açıldı*@
+            <div class="col d-flex justify-content-center">
+                @*4 ürün yanyana listelenmesi için class'ın içerisine 4'er tane col yazildi duruma göre listelenmesi gerken ürünlerin arttirilmasi düsünülürse ürün kartlarının boyutu ayarlanarak baska col etiketleriyle ekstra ürünler listelenebilir*@
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    @* card bir bootsrap özelliği cardSpec kendim yazdım style.css içerisinde card'a kendi özelliklerimi vermek için*@
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        @*card'in gövdesini gösteren etiket bir bootstrap özelligi*@
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>     @*card-text yine bir bootstrap özelliği card'in içerisinde dahil ve metin blogu*@
+                    </div>                                                                          @*burdan asagisi kopyala yapistir metoduyla ayni*@
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container crsContainer">
+        @*Bootstrap'in içerisinde sağdan ve soldan padding vermeye yarayan container sınıfını dahil edildi*@
+        <div id="carouselExample" class="carousel slide">
+            @*Bootstrap'in içinde carousel ve slide class'ları eklendi slide daha güzel bir geçiş için oluşturulmuş bir sınıf*@
+            <div class="carousel-inner">
+                @*carousel-inner carousel'in içeriği için oluşturulur*@
+                <a href="https://www.nvidia.com/tr-tr/">
+                    <div class="carousel-item active">
+                        @*carousel-item class özelliği içeriğin bir carousel ürünü oldugunu tanıtmak için verilir (active yazan ilk başlangıçta hangisinin gösterileceğini gösterir)*@
+                        <img src="~/Images/indir (1).jpeg" class="d-block w-100 bannerHeight" alt="NVIDIA">       @*w-100 -> %100 genişlik vermek için kullanılıyor bannerHeight'ı yüksekliğini kendim ayarlamak için kendim oluşturdum style.css dosyası içinde özellikleri var*@
+                    </div>
+
+
+                </a>
+                <a href="https://www.apple.com/">
+                    @*tıklandığında siteye yönlendirmek için a href etiketi*@
+                    <div class="carousel-item">
+                        <img src="~/Images/iphone14.jpeg" class="d-block w-100 bannerHeight" alt="Iphone14" />
+                    </div>
+                </a>
+                <a href="https://www.samsung.com/>">
+                    <div class="carousel-item">
+                        <img src="~/Images/s22.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
+                    </div>
+                </a>
+            </div>
+            <div>
+               
+            </div>
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            @*carousel kontrolleri için button ayarları detaylı bakmadım olduğu gibi yapıştırdım*@
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+
+    <div class="row" style="margin-top:2%">
+        <div class="col-1 d-flex justify-content-center">
+            <p>Telefonlar</p>
+        </div>
+        <div class="col-11">
+            <hr class="new4"></hr>
+        </div>
+
+    </div>
+    <div style="margin-top:2%">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-flex justify-content-center">
+                <div class="card cardSpec" style="width: 18rem; height:18rem">
+                    <a href="https://www.google.com">
+                        <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center">Çok Satan Markalar</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/appleLogo.png" width="100" height="150" alt="Marka 1" class="card-img-top">
+                    </div>
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/Samsung.png" width="100" height="150" alt="Marka 2" class="card-img-top">
+                    </div>
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/lenovoLogo.png" width="100" height="150" alt="Marka 3" class="card-img-top">
+                    </div>
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/asus.png" width="100" height="150" alt="Marka 4" class="card-img-top">
+                    </div>
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+                <div class=" col-md-1">
+                    <div class="card">
+                        <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+</body>
+</html>
