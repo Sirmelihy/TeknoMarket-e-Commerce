@@ -89,26 +89,54 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\110000233790639 %281%29.jpg" />
+    <Content Include="Images\110000233790639 %282%29.jpg" />
+    <Content Include="Images\2560px-Dyson_logo.svg.png" />
     <Content Include="Images\Aksesuar.png" />
+    <Content Include="Images\apple-watch-7-1.jpg" />
+    <Content Include="Images\apple-watch-series-6-nylon-banner.jpg" />
+    <Content Include="Images\apple.png" />
     <Content Include="Images\appleLogo.png" />
+    <Content Include="Images\Apple_announces-watch-se_09152020.jpg.landing-big_2x.jpg" />
     <Content Include="Images\asus.png" />
     <Content Include="Images\bag-fill.svg" />
     <Content Include="Images\bilgisayar.png" />
+    <Content Include="Images\Calisma4.dll" />
     <Content Include="Images\cevre-birim.png" />
+    <Content Include="Images\G.png" />
+    <Content Include="Images\images.jpeg" />
+    <Content Include="Images\images.png" />
+    <Content Include="Images\indir %281%29.jpeg" />
+    <Content Include="Images\indir %2810%29.png" />
+    <Content Include="Images\indir %282%29.jpeg" />
+    <Content Include="Images\indir %284%29.png" />
+    <Content Include="Images\indir %285%29.png" />
+    <Content Include="Images\indir %286%29.png" />
+    <Content Include="Images\indir %287%29.png" />
+    <Content Include="Images\indir %288%29.png" />
+    <Content Include="Images\indir %289%29.png" />
+    <Content Include="Images\indir.jpeg" />
+    <Content Include="Images\indir__10_-removebg-preview.png" />
     <Content Include="Images\ip14.jpg" />
+    <Content Include="Images\iphone-14-pro-finish-unselect-ga.jpg" />
     <Content Include="Images\iphone14.jpeg" />
+    <Content Include="Images\lenovo-2.jpg" />
     <Content Include="Images\lenovoLogo.png" />
     <Content Include="Images\nvidiaBanner.jpg" />
     <Content Include="Images\oyunVeHobi.png" />
     <Content Include="Images\pc.svg" />
     <Content Include="Images\s22.jpg" />
+    <Content Include="Images\samsun.jpeg" />
     <Content Include="Images\Samsung.png" />
+    <Content Include="Images\samsungTelefon.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\teknomarket.png" />
     <Content Include="Images\telefon.png" />
+    <Content Include="Images\zyro-image-removebg-preview.png" />
     <Content Include="vendor\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap.min.css" />
     <Content Include="vendor\bootstrap.min.js" />
+    <Content Include="vendor\HomePage.css" />
     <Content Include="vendor\jquery-3.6.0.min.js" />
     <Content Include="vendor\style.css" />
     <Content Include="Web.config" />
@@ -116,6 +144,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -123,9 +152,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Images\2ebe0ff1-9ead-4836-b60e-051975424057.vsidx" />
+    <Content Include="Images\5b9161a2-cbde-4321-baa5-979251846095.vsidx" />
+    <Content Include="Images\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="Images\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Anasayfa.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\ForgotPass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
