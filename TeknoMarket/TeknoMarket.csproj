@@ -118,6 +118,8 @@
     <Content Include="Images\indir.jpeg" />
     <Content Include="Images\indir__10_-removebg-preview.png" />
     <Content Include="Images\ip14.jpg" />
+    <Content Include="Images\ip14ad.jpg" />
+    <Content Include="Images\ip14ad2.jpg" />
     <Content Include="Images\iphone-14-pro-finish-unselect-ga.jpg" />
     <Content Include="Images\iphone14.jpeg" />
     <Content Include="Images\lenovo-2.jpg" />
@@ -145,6 +147,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,6 +165,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\ForgotPass.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
