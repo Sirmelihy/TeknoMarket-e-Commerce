@@ -130,6 +130,7 @@
     <Content Include="Images\Samsung.png" />
     <Content Include="Images\samsungTelefon.png" />
     <Content Include="Images\search.png" />
+    <Content Include="Images\teknoAFİŞ.png" />
     <Content Include="Images\teknomarket.png" />
     <Content Include="Images\telefon.png" />
     <Content Include="Images\zyro-image-removebg-preview.png" />
@@ -165,6 +166,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\ForgotPass.cshtml" />
     <Content Include="Views\Hizmetler\Index.cshtml" />
+    <Content Include="Views\Hizmetler\Kampanyalar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

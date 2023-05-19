@@ -13,5 +13,9 @@ namespace TeknoMarket.Controllers
         {
             return View();
         }
+        public ActionResult Kampanyalar()
+        {
+            return View();
+        }
     }
 }
