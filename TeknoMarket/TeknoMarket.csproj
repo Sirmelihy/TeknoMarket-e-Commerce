@@ -132,12 +132,14 @@
     <Content Include="Images\Samsung.png" />
     <Content Include="Images\samsungTelefon.png" />
     <Content Include="Images\search.png" />
+    <Content Include="Images\teknoAFİŞ.png" />
     <Content Include="Images\teknomarket.png" />
     <Content Include="Images\telefon.png" />
     <Content Include="Images\zyro-image-removebg-preview.png" />
     <Content Include="vendor\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap.min.css" />
     <Content Include="vendor\bootstrap.min.js" />
+    <Content Include="vendor\Hizmetler.css" />
     <Content Include="vendor\HomePage.css" />
     <Content Include="vendor\jquery-3.6.0.min.js" />
     <Content Include="vendor\style.css" />
@@ -145,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HizmetlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -165,6 +168,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\ForgotPass.cshtml" />
+    <Content Include="Views\Hizmetler\Index.cshtml" />
+    <Content Include="Views\Hizmetler\Kampanyalar.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
