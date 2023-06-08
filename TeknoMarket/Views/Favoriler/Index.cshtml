@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container padding-bottom-3x mb-2">
+    <div class="row">
+        <div class="col-lg-4">
+            <aside class="user-info-wrapper">
+                <div class="user-cover" style="background-image: url(https://bootdey.com/img/Content/bg1.jpg);">
+                    <div class="info-label" data-toggle="tooltip" title="" data-original-title=""><i class="icon-medal"></i></div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <a class="edit-avatar" href="#"></a><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User">
+                    </div>
+                    <div class="user-data">
+                        <h4>Ahmet Yılmaz</h4>
+                    </div>
+                </div>
+            </aside>
+            <nav class="list-group">
+                <a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i>Siparişlerim<span class="badge badge-primary badge-pill">6</span></a>
+                <a class="list-group-item" href="#"><i class="fa fa-user"></i>Profil</a>
+                <a class="list-group-item" href="#"><i class="fa fa-map"></i>Adreslerim</a>
+                <a class="list-group-item with-badge active" href="#"><i class="fa fa-heart"></i>Favorilerim<span class="badge badge-primary badge-pill">3</span></a>
+                <a class="list-group-item with-badge" href="#"><i class="fa fa-tag"></i>Kuponlarım<span class="badge badge-primary badge-pill">4</span></a>
+            </nav>
+        </div>
+        <div class="col-lg-8">
+            <div class="padding-top-2x mt-2 hidden-lg-up"></div>
+            <!-- Wishlist Table-->
+            <div class="table-responsive wishlist-table margin-bottom-none">
+                <table class="table">
+                    <thead>
+                        <tr>
+                          
+                            <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Favorilerimden Çıkar</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="product-item">
+                                    <a class="product-thumb" href="#">
+                                        
+                                        <img src="~/Images/apple-iphone-xs-max-256gb-spacegrey-unlocked.jpg" />
+                                    </a>
+                                    <div class="product-info">
+                                        <h4 class="product-title"><a href="#">Unionbay Park</a></h4>
+                                        <div class="text-lg text-medium text-muted">45643.90 TL</div>
+                                        <div>
+                                            Durumu:
+                                            <div class="d-inline text-success">Stokta mevcut</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-item">
+                                    <a class="product-thumb" href="#">
+                                        
+                                        <img src="~/Images/apple-iphone-xs-max-256gb-spacegrey-unlocked.jpg" />
+                                    </a>
+                                    <div class="product-info">
+                                        <h4 class="product-title"><a href="#">Daily Fabric Cap</a></h4>
+                                        <div class="text-lg text-medium text-muted">24.70 TL</div>
+                                        <div>
+                                            Durumu:
+                                            <div class="d-inline text-warning">2 - 3 Hafta sürer stoğa gelmesi</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-item">
+                                    <a class="product-thumb" href="#">
+                                        
+                                        <img src="~/Images/apple-iphone-xs-max-256gb-spacegrey-unlocked.jpg" />
+                                    </a>
+                                    <div class="product-info">
+                                        <h4 class="product-title"><a href="#">Cole Haan Crossbody</a></h4>
+                                        <div class="text-lg text-medium text-muted">200.00 TL</div>
+                                        <div>
+                                            Durumu:
+                                            <div class="d-inline text-success">Stokta mevcut</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" id="inform_me" checked="">
+                <label class="custom-control-label" for="inform_me">Ürün stoğa gelince haber ver!</label>
+            </div>
+        </div>
+    </div>
+</div>

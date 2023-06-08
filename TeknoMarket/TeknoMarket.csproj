@@ -131,7 +131,9 @@
     <Content Include="Images\110000233790639 %281%29.jpg" />
     <Content Include="Images\110000233790639 %282%29.jpg" />
     <Content Include="Images\2560px-Dyson_logo.svg.png" />
+    <Content Include="Images\804952.png" />
     <Content Include="Images\Aksesuar.png" />
+    <Content Include="Images\apple-iphone-xs-max-256gb-spacegrey-unlocked.jpg" />
     <Content Include="Images\apple-watch-7-1.jpg" />
     <Content Include="Images\apple-watch-series-6-nylon-banner.jpg" />
     <Content Include="Images\apple.png" />
@@ -171,6 +173,7 @@
     <Content Include="Images\Samsung.png" />
     <Content Include="Images\samsungTelefon.png" />
     <Content Include="Images\search.png" />
+    <Content Include="Images\teknoAFİŞ.png" />
     <Content Include="Images\teknomarket.png" />
     <Content Include="Images\telefon.png" />
     <Content Include="Images\zyro-image-removebg-preview.png" />
@@ -182,6 +185,10 @@
     <Content Include="vendor\bootstrap.min.css" />
     <Content Include="vendor\bootstrap.min.js" />
     <Content Include="vendor\categoryvendor\categoryvendor.css" />
+    <Content Include="vendor\Adres.css" />
+    <Content Include="vendor\Hizmetler.css" />
+    <Content Include="vendor\Favoriler.css" />
+    <Content Include="vendor\Sepetim.css" />
     <Content Include="vendor\HomePage.css" />
     <Content Include="vendor\jquery-3.6.0.min.js" />
     <Content Include="vendor\style.css" />
@@ -191,9 +198,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\FavorilerController.cs" />
+    <Compile Include="Controllers\AdresController.cs" />
+    <Compile Include="Controllers\HizmetlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SepetimController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +224,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\ForgotPass.cshtml" />
+    <Content Include="Views\Hizmetler\Index.cshtml" />
+    <Content Include="Views\Hizmetler\Kampanyalar.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
@@ -221,6 +234,9 @@
     <Content Include="Views\Admin\testList.cshtml" />
     <Content Include="Views\Admin\listAccounts.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Sepetim\Index.cshtml" />
+    <Content Include="Views\Favoriler\Index.cshtml" />
+    <Content Include="Views\Adres\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
