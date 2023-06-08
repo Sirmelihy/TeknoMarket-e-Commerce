@@ -180,6 +180,7 @@
     <Content Include="vendor\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap.min.css" />
     <Content Include="vendor\bootstrap.min.js" />
+    <Content Include="vendor\Adres.css" />
     <Content Include="vendor\Hizmetler.css" />
     <Content Include="vendor\Favoriler.css" />
     <Content Include="vendor\Sepetim.css" />
@@ -191,6 +192,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FavorilerController.cs" />
+    <Compile Include="Controllers\AdresController.cs" />
     <Compile Include="Controllers\HizmetlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -218,6 +220,7 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Sepetim\Index.cshtml" />
     <Content Include="Views\Favoriler\Index.cshtml" />
+    <Content Include="Views\Adres\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
