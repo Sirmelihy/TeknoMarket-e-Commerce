@@ -1,10 +1,8 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -21,14 +19,12 @@
         }
 
         .kayit:hover {
-
-            text-decoration:underline;
-            color:brown;
-
+            text-decoration: underline;
+            color: brown;
         }
 
         .kayit {
-            text-decoration:none;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -39,47 +35,70 @@
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
-
                             <div class="pb-5">
-
-                                @*<h2 class="fw-bold mb-2 text-uppercase">Login</h2>*@
-                                <img src="~/Images/teknomarket.png" style="height:15rem;width:15rem;" / >
+                                <img src="~/Images/teknomarket.png" style="height:15rem;width:15rem;" />
                                 <p class="text-white-50 mb-2">Lütfen Eposta ve Şifrenizi Girin!</p>
-
                                 <h4 class="fw-bold mb-4 text-uppercase">Giriş Yap</h4>
-
                                 <div class="form-outline form-white mb-4">
                                     <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="E-posta" />
                                 </div>
-
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="şifre   " />
+                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="şifre" />
                                 </div>
-
-                                <p class="small mb-2 pb-lg-2"><a class="text-white-50" href="/Login/ForgotPass">Şifremi Unuttum</a></p>
-
-                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Giriş Yap</button>
-
+                                <p class="small mb-2 pb-lg-2">
+                                    <a class="text-white-50" href="/Login/ForgotPass">Şifremi Unuttum</a>
+                                </p>
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit" onclick="login()">Giriş Yap</button>
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                    <a href="#!" class="text-white loginLogo" style="padding-right:1rem"><i class="bi bi-facebook" style="font-size: 40px; color: #4267B2"></i></a>
+                                    <a href="#!" class="text-white loginLogo" style="padding-right:1rem">
+                                        <i class="bi bi-facebook" style="font-size: 40px; color: #4267B2"></i>
+                                    </a>
                                     <a href="#!" class="text-white loginLogo">
-                                        <img src="~/Images/G.png" class="align-middle" style="height:43px;margin-top:11px" / >
+                                        <img src="~/Images/G.png" class="align-middle" style="height:43px;margin-top:11px" />
                                     </a>
                                 </div>
-
                             </div>
-
                             <div>
                                 <p class="mb-0">
-                                    Hesabınız yok mu ? <a href="/Login/Register" class="text-white-50 fw-bold kayit">Kayıt Ol</a>
+                                    Hesabınız yok mu? <a href="/Login/Register" class="text-white-50 fw-bold kayit">Kayıt Ol</a>
                                 </p>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+            <script>
+                function login() {
+                    var email = $("#typeEmailX").val();
+                    var password = $("#typePasswordX").val();
+
+                    // AJAX isteğiyle giriş işlemini gerçekleştir
+                    $.ajax({
+                        url: '/Login/Login',
+                        type: 'POST',
+                        data: {
+                            email: email,
+                            password: password
+                        },
+                        success: function (result) {
+                            if (result.success) {
+                                // Giriş başarılıysa, anasayfaya yönlendir
+                                window.location.href = "/Home/Anasayfa";
+                            } else {
+                                // Giriş başarısızsa, hata mesajını göster
+                                alert(result.message);
+                            }
+                        },
+                        error: function () {
+                            // İstek hatası durumunda hata mesajı göster
+                            alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+                        }
+                    });
+                }
+            </script>
+
         </div>
     </section>
+   @ViewBag.test
 </body>
 </html>

@@ -42,7 +42,6 @@ namespace TeknoMarket.Controllers
                 test = "SQL CONNECTION NOT SUCCESSFULL";
                 ViewBag.test = test;
             }
-
             return View();
         }
     }
