@@ -177,9 +177,14 @@
     <Content Include="Images\teknomarket.png" />
     <Content Include="Images\telefon.png" />
     <Content Include="Images\zyro-image-removebg-preview.png" />
+    <Content Include="vendor\adminvendor\admin.js" />
+    <Content Include="vendor\adminvendor\adminlayout.css" />
+    <Content Include="vendor\adminvendor\Datatable.css" />
+    <Content Include="vendor\adminvendor\Datatable.js" />
     <Content Include="vendor\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap.min.css" />
     <Content Include="vendor\bootstrap.min.js" />
+    <Content Include="vendor\categoryvendor\categoryvendor.css" />
     <Content Include="vendor\Adres.css" />
     <Content Include="vendor\Hizmetler.css" />
     <Content Include="vendor\Favoriler.css" />
@@ -191,6 +196,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FavorilerController.cs" />
     <Compile Include="Controllers\AdresController.cs" />
     <Compile Include="Controllers\HizmetlerController.cs" />
@@ -201,6 +208,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\testModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +227,13 @@
     <Content Include="Views\Hizmetler\Index.cshtml" />
     <Content Include="Views\Hizmetler\Kampanyalar.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Admin\AddProduct.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\tester.cshtml" />
+    <Content Include="Views\Admin\testList.cshtml" />
+    <Content Include="Views\Admin\listAccounts.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Sepetim\Index.cshtml" />
     <Content Include="Views\Favoriler\Index.cshtml" />
     <Content Include="Views\Adres\Index.cshtml" />
@@ -230,7 +246,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

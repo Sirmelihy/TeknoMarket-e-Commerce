@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .card {
+        padding: .8em;
+        background: #f5f5f5;
+        position: relative;
+        overflow: visible;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        margin-right: 20px;
+    }
+</style>
+<div class="card mt-5">
+    <form class="form-group" method="post">
+        <div class="form-container pt-4 pb-4 mx-auto">
+            <div class="form-group" method="post">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN ID</label>
+                    <div class="col-md-4">
+                        <input id="product_id" name="product_id" placeholder="ÜRÜN ID" class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2" method="post">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN ADI</label>
+                    <div class="col-md-4">
+                        <input id="product_name" name="product_name" placeholder="ÜRÜN ADI" class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">FİYAT BİLGİSİ</label>
+                    <div class="col-md-4">
+                        <input id="price_inp" name="price_inp" placeholder="FİYAT BİLGİSİ" class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN MARKASI</label>
+                    <div class="col-md-4">
+                        <input id="product_brand" name="product_brand" placeholder="ÜRÜN MARKASI" class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">STOK BİLGİSİ</label>
+                    <div class="col-md-4">
+                        <input id="stock_inp" name="stock_inp" placeholder="STOK BİLGİSİ" class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN AÇIKLAMASI</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2">
+                <div class="row">
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="filebutton" style="font-weight:500">ÜRÜN GÖRSELİ</label>
+                    <div class="col-md-4">
+                        <input id="filebutton" name="filebutton" class="input-file" type="file">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-2 ">
+                <div class="col-md-4 mx-auto d-flex justify-content-center">
+                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">GÖNDER</button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </form>
+</div>
+@ViewBag.test
+@ViewBag.p
+

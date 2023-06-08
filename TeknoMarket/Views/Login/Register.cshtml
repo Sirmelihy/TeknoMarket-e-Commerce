@@ -1,4 +1,5 @@
 ﻿
+
 @{
     Layout = null;
 }
@@ -39,27 +40,40 @@
 
                                 <h4 class="fw-bold mb-4 text-uppercase">Kayıt Ol</h4>
 
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="İsim" />
+                                <form class="form-group" method="post">
+                                    <div class="form-group" method="post">
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <input type="text" name="typeisimX" id="typeisimX" class="form-control form-control-lg" placeholder="İsim" />
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" name="typeSoyisimX" id="typeSoyisimX" class="form-control form-control-lg" placeholder="Soyisim" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Soyisim" />
+
+
+                                    <div class="form-group" method="post">
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="text" name="typeEmailX" id="typeEmailX" class="form-control form-control-lg" placeholder="E-posta" />
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-outline form-white mb-4">
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="E-posta" />
-                                </div>
+                                    <div class="form-group" method="post">
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="password" name="typePasswordX" id="typePasswordX" class="form-control form-control-lg" placeholder="şifre" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" method="post">
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="password" name="typePasswordagainX" id="typePasswordagainX" class="form-control form-control-lg" placeholder="şifre tekrar" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" method="post">
+                                        <button onclick="myFunc()" class="btn btn-outline-light btn-lg px-5" type="submit">Kayıt Ol</button>
+                                    </div>
+                                </form>
 
-                                <div class="form-outline form-white mb-4">
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="şifre" />
-                                </div>
-                                <div class="form-outline form-white mb-4">
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="şifre tekrar" />
-                                </div>
-
-                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Kayıt Ol</button>
 
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                     <a href="#!" class="text-white loginLogo" style="padding-right:1rem"><i class="bi bi-facebook" style="font-size: 40px; color: #4267B2"></i></a>
@@ -67,7 +81,6 @@
                                         <img src="~/Images/G.png" class="align-middle" style="height:43px;margin-top:11px" />
                                     </a>
                                 </div>
-
                             </div>
 
                             <div>
@@ -82,7 +95,8 @@
             </div>
         </div>
     </section>
-
+    @ViewBag.sendHata
+    @ViewBag.test
 
 </body>
 </html>

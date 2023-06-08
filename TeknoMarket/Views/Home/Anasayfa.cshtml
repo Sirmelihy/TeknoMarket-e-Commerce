@@ -4,7 +4,14 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 <link href="~/vendor/HomePage.css" rel="stylesheet" />
+<style>
+    .product-card:hover {
+        transition-delay: 0.2s;
+        transform: scale(1.05);
+    }
+</style>
 
+@ViewBag.test
 <div class="container crsContainer">
     @*Bootstrap'in içerisinde sağdan ve soldan padding vermeye yarayan container sınıfını dahil edildi*@
     <div id="carouselExample" class="carousel slide">
@@ -33,6 +40,43 @@
 
         </div>
         <div class="container">
+
+
+            <div class="row">
+                @for(int i = 0;i<8;i++)
+            {
+<div class="col-3 mb-5 mt-5">
+    <div class="product-card bg-dark" style="border-radius:5%">
+        <div class="d-flex justify-content-between p-3">
+            <p class="lead mb-0 text-light">iPhone 14 Pro Max Gray</p>
+        </div>
+        <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg"
+             class="card-img-top inside-image" alt="Phonel" />
+        <div class="card-body">
+            <div class="d-flex justify-content-between" style="padding-top:1rem">
+                <p class="text-light" style="padding-left:1rem">Phones</p>
+                <p class="h6 lead text-danger" style="padding-right:1rem"><s>$1099</s></p>
+            </div>
+
+            <div class="d-flex justify-content-between mb-3">
+                <h5 class="mb-0 text-light fw-normal" style="padding-left:1rem">Apple Iphone</h5>
+                <h5 class="text-light h3" style="padding-right:1rem">$999</h5>
+            </div>
+            <div class="d-flex justify-content-center">
+                <form class="w-100 d-flex justify-content-center" method="post">
+                    <button type="button" class="btn btn-secondary w-75 mb-3">Sepete Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+            } 
+            </div>
+
+
+
+
+
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-6 mb-4">
                     <div class="card h-100 border-0 shadow-sm">
