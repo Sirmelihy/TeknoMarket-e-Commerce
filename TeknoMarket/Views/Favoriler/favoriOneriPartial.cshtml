@@ -1,0 +1,112 @@
+﻿@model List<TeknoMarket.Models.Product>
+
+
+<div class="row">
+    @{
+        int count = 0;
+        Random rnd = new Random();
+
+
+    }
+    @foreach (var x in Model)
+    {
+        if (rnd.Next(100) < 5 && count < 4)
+        {
+
+            <div class="col-lg-3 mb-5 mt-5">
+                <div class="product-card bg-dark" style="border-radius:5%">
+                    <div class="d-flex justify-content-between p-3">
+                        <p class="lead mb-0 text-light" style="font-size:12px">@x.name</p>
+                    </div>
+                    <a href="/Product/Index?product=@x.Id">
+                        <img src="@x.imageUrl"
+                             class="card-img-top inside-image" alt="Phonel" />
+                    </a>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between" style="padding-top:1rem">
+                            <p class="text-light" style="padding-left:1rem"><a href="/Category/Index?category=@x.category_insider"> @x.category_name</a></p>
+                            <p class="h6 lead text-danger" style="padding-right:1rem"><s>@((x.price+x.price* 18/100)) ₺</s></p>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <h5 class="mb-0 text-light fw-normal" style="padding-left:1rem"></h5>
+                            <h5 class="text-light h3" style="padding-right:1rem">@x.price.ToString("#,##0")₺</h5>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <form class="w-100 d-flex justify-content ps-3 px-3" method="post">
+                                <button type="button" id="@x.Id" class="btn btn-secondary w-50 mb-3 me-auto sepete-ekle-button">Sepete Ekle</button>
+                                <button type="button" id="@x.Id"class="mb-3 w-25  iconic" style="border-radius:50px;"><i class="bi bi-heart" style="font-size:150%"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            count++;
+
+        }
+
+
+    }
+</div>
+
+<script>
+
+    $('.iconic').click(function () {
+
+
+        if ($(this).children().hasClass('bi-heart')) {
+            $(this).children().removeClass('bi-heart');
+            $(this).children().toggleClass('bi-heart-fill');
+        }
+
+        else if ($(this).children().hasClass('bi-heart-fill')) {
+            $(this).children().removeClass('bi-heart-fill');
+            $(this).children().toggleClass('bi-heart');
+        }
+
+
+
+
+    });
+
+    $('.iconic').click(function () {
+
+        var x = this.id;
+
+        // Make an Ajax call to the controller action
+        $.ajax({
+            url: '/Home/AddFavorite',
+            type: 'POST',
+            data: {
+
+                value: x
+
+            },
+            success: function (result) {
+                alert("ürün favorilere eklendi");
+                location.reload();
+            }
+        });
+    });
+
+    $('.sepete-ekle-button').click(function () {
+
+        var x = this.id;
+
+        // Make an Ajax call to the controller action
+        $.ajax({
+            url: '/Home/AddBasket',
+            type: 'POST',
+            data: {
+
+                value: x
+
+            },
+            success: function (result) {
+                alert("ürün sepete eklendi");
+            }
+        });
+    });
+
+</script>

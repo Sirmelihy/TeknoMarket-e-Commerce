@@ -1,0 +1,60 @@
+﻿@model List<TeknoMarket.Models.Product>
+
+@foreach (var x in Model)
+{
+
+    <div class="row gy-3 mb-4">
+        <div class="col-lg-5">
+            <div class="me-lg-5">
+                <div class="d-flex">
+                    <img src="@x.imageUrl" class="border rounded me-3" style="width: 96px; height: 96px;" />
+                    <div class="">
+                        <a href="/Product/Index?product=@x.Id" class="nav-link">@x.name</a>
+                        <a href="/Category/Index?category=@x.category_insider" style="text-decoration:none;"><p class="text-muted">@x.category_name</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+            <div class="">
+                <select style="width: 100px;" class="form-select me-4">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="">
+                <text class="h6">@x.price.ToString("#,##0")₺</text> <br />
+                <small class="text-muted text-nowrap"> 460.00 TL  </small>
+            </div>
+        </div>
+        <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
+            <div class="float-md-end">
+                <button id="@x.Id" type="button" class="btn btn-danger mb-3 me-auto sil-button">SİL</button>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+
+    $('.sil-button').click(function () {
+
+        var x = this.id;
+
+        // Make an Ajax call to the controller action
+        $.ajax({
+            url: '/Favoriler/favoriSil',
+            type: 'POST',
+            data: {
+
+                value: x
+
+            },
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container mt-5">
+    <form>
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example1">Adınız</label>
+            <input type="text" id="form4Example1" class="form-control" />
+
+        </div>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example2">Email adresiniz</label>
+            <input type="email" id="form4Example2" class="form-control" />
+        </div>
+
+        <!-- Message input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form4Example3">Mesajınız</label>
+            <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+
+        </div>
+
+        <!-- Checkbox -->
+        <div class="form-check d-flex justify-content-center mb-4">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
+            <label class="form-check-label" for="form4Example4">
+                Mail Adresime Bu mesajın Bir kopyasını Gönder
+            </label>
+
+
+
+        </div>
+
+        <!-- Submit button -->
+        <div class="d-flex justify-content-center">
+
+            <button type="Gönder" class="btn btn-primary btn-block mb-4">
+                Gönder
+            </button>
+        </div>
+
+    </form>
+</div>  
+

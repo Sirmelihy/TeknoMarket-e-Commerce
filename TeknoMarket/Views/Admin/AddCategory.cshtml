@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .card {
+        padding: .8em;
+        background: #f5f5f5;
+        position: relative;
+        overflow: visible;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        margin-right: 20px;
+    }
+</style>
+<div class="card mt-5">
+    <form class="form-group" method="post">
+        <div class="form-container pt-4 pb-4 mx-auto">
+            <div class="form-group pt-2" method="post">
+                <div class="row">
+
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="category_name" style="font-weight:500">Kategori Adı</label>
+
+                    <div class="col-md-4">
+                        <input id="product_name" name="category_name" placeholder="Kategori Adı" class="form-control input-md" required="" type="text">
+
+                    </div>
+                    <div class="col-md-4">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Ekle</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@ViewBag.test
+

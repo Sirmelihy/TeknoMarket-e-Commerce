@@ -23,7 +23,7 @@ namespace TeknoMarket.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Anasayfa", "Home");
+                return RedirectToAction("Index", "Adres");
             }
 
 
@@ -40,7 +40,7 @@ namespace TeknoMarket.Controllers
             string test = "";
 
             MySqlConnection cnn;
-            string connectionstring = "Server=localhost;Port=3307;Database=teknomarkettest;Uid=root;Pwd=;";
+            string connectionstring = "Server=localhost;Port=3307;Database=teknomarket;Uid=root;Pwd=;";
             cnn = new MySqlConnection(connectionstring);
 
             MySqlCommand cmd = new MySqlCommand();
@@ -60,45 +60,46 @@ namespace TeknoMarket.Controllers
                 ViewBag.test = test;
 
 
-                cmd.CommandText = "select * from accounts";
+                cmd.CommandText = "select * from user";
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
                 {
                     Account temp = new Account();
                     temp.Id = dr.GetInt32("id");
-                    temp.username = dr.GetString("username");
+                    temp.email = dr.GetString("email");
                     temp.password= dr.GetString("password");
+                    temp.name = dr.GetString("name");
+                    temp.surname = dr.GetString("surname");
+                    temp.phone = dr.GetString("phone");
                     temp.type = dr.GetString("type");
 
                     list.Add(temp);
                 }
 
-                //foreach (var x in list)
-                //{
-                //    if (x.userName == typeEmailX)
-                //    {
-                //        ViewBag.test = x.userName;
-                //    }
-                //}
-
                 foreach (var x in list)
                 {
-                    if (typeEmailX == x.username && typePasswordX == x.password)
+                    if (typeEmailX == x.email && typePasswordX == x.password)
                     {
                         if(x.type == "admin")
                         {
-                            FormsAuthentication.SetAuthCookie(x.username, false);
-                            Session["username"] = x.username;
+                            FormsAuthentication.SetAuthCookie(x.email, false);
+                            Session["email"] = x.email;
                             Session["password"] = x.password;
+                            Session["name"] = x.name;
+                            Session["surname"] = x.surname;
+                            Session["phone"] = x.phone;
                             Session["type"] = x.type;
                             return RedirectToAction("AddProduct", "Admin");
                         }
                         else
                         {
-                            FormsAuthentication.SetAuthCookie(x.username, false);
-                            Session["username"] = x.username;
+                            FormsAuthentication.SetAuthCookie(x.email, false);
+                            Session["email"] = x.email;
                             Session["password"] = x.password;
+                            Session["name"] = x.name;
+                            Session["surname"] = x.surname;
+                            Session["phone"] = x.phone;
                             Session["type"] = x.type;
                             return RedirectToAction("Anasayfa", "Home");
                         }
@@ -147,7 +148,7 @@ namespace TeknoMarket.Controllers
             string test = "";
 
             MySqlConnection cnn;
-            string connectionstring = "Server=localhost;Port=3307;Database=teknomarkettest;Uid=root;Pwd=;";
+            string connectionstring = "Server=localhost;Port=3307;Database=teknomarket;Uid=root;Pwd=;";
             cnn = new MySqlConnection(connectionstring);
 
             MySqlCommand cmd = new MySqlCommand();
@@ -163,13 +164,13 @@ namespace TeknoMarket.Controllers
 
                 
 
-                cmd.CommandText = "select * from accounts";
+                cmd.CommandText = "select * from user";
                 MySqlDataReader dr = cmd.ExecuteReader();
                 string tempUsername;
                 var checkList = new List<string>();
                 while (dr.Read())
                 {
-                    tempUsername = dr.GetString("username");
+                    tempUsername = dr.GetString("email");
 
                     checkList.Add(tempUsername);
                 }
@@ -197,14 +198,24 @@ namespace TeknoMarket.Controllers
                     object idGetter = cmd.ExecuteScalar();
                     int lastid = Convert.ToInt32(idGetter);
                     lastidText = (lastid + 1).ToString();
-                    cmd.CommandText = "INSERT INTO accounts (id,username,password,type) VALUES (" + lastidText + ",'" + typeEmailX + "','" + typePasswordX + "','user')";
+                    cmd.CommandText = "INSERT INTO accounts (id,email,password,name,surname,phone,type) VALUES (@id,@email,@password,@name,@surname,@phone,@type)";
+                    cmd.Parameters.AddWithValue("@id", lastidText);
+                    cmd.Parameters.AddWithValue("@email", typeEmailX);
+                    cmd.Parameters.AddWithValue("@password", typePasswordX);
+                    cmd.Parameters.AddWithValue("@name", typeisimX);
+                    cmd.Parameters.AddWithValue("@surname", typeSoyisimX);
+                    cmd.Parameters.AddWithValue("@phone", " ");
+                    cmd.Parameters.AddWithValue("@type", "user");
                     cmd.ExecuteNonQuery();
 
                     FormsAuthentication.SetAuthCookie(typeEmailX, false);
-                    Session["username"] = typeEmailX;
+                    Session["email"] = typeEmailX;
                     Session["password"] = typePasswordX;
+                    Session["name"] = typeisimX;
+                    Session["surname"] = typeSoyisimX;
+                    Session["phone"] = " ";
                     Session["type"] = "user";
-                    return RedirectToAction("Anasayfa", "Home");
+                    return RedirectToAction("Index", "Adres");
 
                 }
 
@@ -226,6 +237,12 @@ namespace TeknoMarket.Controllers
 
 
             ViewBag.sendHata = sendHata;
+            return View();
+        }
+
+        public ActionResult ForgotPass ()
+        {
+
             return View();
         }
     }

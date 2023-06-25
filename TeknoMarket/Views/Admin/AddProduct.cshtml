@@ -14,57 +14,57 @@
     }
 </style>
 <div class="card mt-5">
-    <form class="form-group" method="post">
+    <form class="form-group" method="post" enctype="multipart/form-data">
         <div class="form-container pt-4 pb-4 mx-auto">
             <div class="form-group" method="post">
+                @*<div class="row">
+                <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN ID</label>
+                <div class="col-md-4">
+                    <input id="product_id" name="product_id" placeholder="ÜRÜN ID" class="form-control input-md" required="" type="text">
+                </div>
+            </div>*@
+            </div>
+            <div class="form-group pt-2" method="post">
                 <div class="row">
-                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN ID</label>
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">KATEGORİ ID</label>
                     <div class="col-md-4">
-                        <input id="product_id" name="product_id" placeholder="ÜRÜN ID" class="form-control input-md" required="" type="text">
+                        <input id="category_id" name="category_id" placeholder="KATEGORİ ID" class="form-control input-md" required="" type="text">
                     </div>
                 </div>
             </div>
             <div class="form-group pt-2" method="post">
                 <div class="row">
-                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN ADI</label>
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_name" style="font-weight:500">ÜRÜN ADI</label>
                     <div class="col-md-4">
                         <input id="product_name" name="product_name" placeholder="ÜRÜN ADI" class="form-control input-md" required="" type="text">
                     </div>
                 </div>
             </div>
-            <div class="form-group pt-2">
+            <div class="form-group pt-2" method="post">
                 <div class="row">
-                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">FİYAT BİLGİSİ</label>
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_stock" style="font-weight:500">STOK BİLGİSİ</label>
                     <div class="col-md-4">
-                        <input id="price_inp" name="price_inp" placeholder="FİYAT BİLGİSİ" class="form-control input-md" required="" type="text">
+                        <input id="product_stock" name="product_stock" placeholder="STOK BİLGİSİ" class="form-control input-md" required="" type="text">
                     </div>
                 </div>
             </div>
-            <div class="form-group pt-2">
+            <div class="form-group pt-2" method="post">
                 <div class="row">
-                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN MARKASI</label>
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_price" style="font-weight:500">FİYAT BİLGİSİ</label>
                     <div class="col-md-4">
-                        <input id="product_brand" name="product_brand" placeholder="ÜRÜN MARKASI" class="form-control input-md" required="" type="text">
+                        <input id="product_price" name="product_price" placeholder="FİYAT BİLGİSİ" class="form-control input-md" required="" type="text">
                     </div>
                 </div>
             </div>
-            <div class="form-group pt-2">
+            <div class="form-group pt-2" method="post">
                 <div class="row">
-                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">STOK BİLGİSİ</label>
-                    <div class="col-md-4">
-                        <input id="stock_inp" name="stock_inp" placeholder="STOK BİLGİSİ" class="form-control input-md" required="" type="text">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group pt-2">
-                <div class="row">
-                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_id" style="font-weight:500">ÜRÜN AÇIKLAMASI</label>
+                    <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="product_description" style="font-weight:500">ÜRÜN AÇIKLAMASI</label>
                     <div class="col-md-4">
                         <textarea class="form-control" id="product_description" name="product_description"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="form-group pt-2">
+            <div class="form-group pt-2" method="post">
                 <div class="row">
                     <label class="control-label col-md-4 d-flex justify-content-end align-items-center " for="filebutton" style="font-weight:500">ÜRÜN GÖRSELİ</label>
                     <div class="col-md-4">

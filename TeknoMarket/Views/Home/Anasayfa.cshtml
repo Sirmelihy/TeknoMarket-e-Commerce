@@ -1,939 +1,368 @@
-﻿
+﻿@model List<TeknoMarket.Models.Product>
+
 @{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-<link href="~/vendor/HomePage.css" rel="stylesheet" />
+@*<link href="~/vendor/HomePage.css" rel="stylesheet" />*@
 <style>
-    .product-card:hover {
+    /*.product-card:hover {
         transition-delay: 0.2s;
         transform: scale(1.05);
+    }*/
+
+    .card-img-top:hover {
+        transition-delay: 0.2s;
+        transform: scale(1.1);
     }
+
+    .iconic:hover {
+        border-color: #3b71ca !important;
+        background-color: white !important;
+    }
+
+        .iconic:hover i {
+            color: red !important;
+        }
 </style>
 
 @ViewBag.test
-<div class="container crsContainer">
-    @*Bootstrap'in içerisinde sağdan ve soldan padding vermeye yarayan container sınıfını dahil edildi*@
-    <div id="carouselExample" class="carousel slide">
-        @*Bootstrap'in içinde carousel ve slide class'ları eklendi slide daha güzel bir geçiş için oluşturulmuş bir sınıf*@
-        <div class="carousel-inner">
-            @*carousel-inner carousel'in içeriği için oluşturulur*@
-            <a href="https://www.nvidia.com/tr-tr/">
-                <div class="carousel-item active">
-                    @*carousel-item class özelliği içeriğin bir carousel ürünü oldugunu tanıtmak için verilir (active yazan ilk başlangıçta hangisinin gösterileceğini gösterir)*@
-                    <img src="~/Images/nvidiaBanner.jpg" class="d-block w-100 bannerHeight" alt="NVIDIA">       @*w-100 -> %100 genişlik vermek için kullanılıyor bannerHeight'ı yüksekliğini kendim ayarlamak için kendim oluşturdum style.css dosyası içinde özellikleri var*@
-                </div>
 
 
-            </a>
-            <a href="https://www.apple.com/">
-                @*tıklandığında siteye yönlendirmek için a href etiketi*@
-                <div class="carousel-item">
-                    <img src="~/Images/iphone14.jpeg" class="d-block w-100 bannerHeight" alt="Iphone14" />
-                </div>
-            </a>
-            <a href="https://www.samsung.com/>">
-                <div class="carousel-item">
-                    <img src="~/Images/s22.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
-                </div>
-            </a>
-
+<div class="container">
+    <div class="mb-5 mt-5">
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <a href="https://www.nvidia.com/tr-tr/">
+                    <div class="carousel-item active">
+                        <img src="~/Images/nvidiaBanner.jpg" class="d-block w-100 bannerHeight" alt="NVIDIA">
+                    </div>
+                </a>
+                <a href="https://www.razer.com/">
+                    <div class="carousel-item">
+                        <img src="~/Images/HomePage images/RazerBanner.png" class="d-block w-100 bannerHeight" alt="Iphone14" />
+                    </div>
+                </a>
+                <a href="https://www.msi.com/">
+                    <div class="carousel-item">
+                        <img src="~/Images/HomePage images/msiBanner.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
+                    </div>
+                </a>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="container">
+    </div>
+
+    <header>
+        <h3 class="bg-secondary text-light" style="padding-top: 1rem; padding-bottom: 1rem; padding-left: 2vw; font-weight: bold; border-radius: 50px">
+            Yeni Ürünler
+            @*<a href="#" class="" style="font-size:16px;padding-left:1rem;font-weight:normal">Tümünü Gör</a>*@
+        </h3>
+    </header>
+
+    <div class="row">
+        @{
+            int count = 0;
+            Random rnd = new Random();
 
 
-            <div class="row">
-                @for(int i = 0;i<8;i++)
+        }
+        @foreach (var x in Model)
+        {
+            if(rnd.Next(100) < 5 && count < 4)
+                {
+
+                <div class="col-lg-3 mb-5 mt-5">
+                    <div class="product-card bg-dark" style="border-radius:5%">
+                        <div class="d-flex justify-content-between p-3">
+                            <p class="lead mb-0 text-light" style="font-size:12px">@x.name</p>
+                        </div>
+                        <div style="overflow:hidden;">
+                            <a href="/Product/Index?product=@x.Id">
+                                <img src="@x.imageUrl"
+                                     class="card-img-top inside-image" alt="@x.category_name" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between" style="padding-top:1rem">
+                                <p class="text-light" style="padding-left:1rem"><a href="/Category/Index?category=@x.category_insider" > @x.category_name</a></p>
+                                <p class="h6 lead text-danger" style="padding-right:1rem"><s>@((x.price+x.price* 18/100)) ₺</s></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="mb-0 text-light fw-normal" style="padding-left:1rem"></h5>
+                                <h5 class="text-light h3" style="padding-right:1rem">@x.price.ToString("#,##0")₺</h5>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <form class="w-100 d-flex justify-content ps-3 px-3" method="post">
+                                    <button type="button" id="@x.Id" class="btn btn-secondary w-50 mb-3 me-auto sepete-ekle-button">Sepete Ekle</button>
+                                    <button type="button" id="@x.Id" class="mb-3 w-25  iconic" style="border-radius:50px;"><i class="bi bi-heart" style="font-size:150%"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                count++;
+
+            }
+
+
+        }
+    </div>
+
+    <div class="mb-5 mt-5">
+        <div id="carouselExamplee" class="carousel slide">
+            <div class="carousel-inner">
+                <a href="https://www.corsair.com/tr-tr/">
+                    <div class="carousel-item active">
+                        <img src="~/Images/HomePage images/corsairBanner.png" class="d-block w-100 bannerHeight" alt="Corsair">
+                    </div>
+                </a>
+                <a href="https://www.logitech.com/">
+                    <div class="carousel-item">
+                        <img src="~/Images/HomePage images/logitechBannerr.jpg" class="d-block w-100 bannerHeight" alt="logitech" />
+                    </div>
+                </a>
+                <a href="https://www.asus.com/">
+                    <div class="carousel-item">
+                        <img src="~/Images/HomePage images/asusBanner.jpg" class="d-block w-100 bannerHeight" alt="Asus">
+                    </div>
+                </a>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExamplee" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExamplee" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="w-100 mb-5 mt-5">
+        <a href="#">
+            <img src="~/Images/HomePage images/feecms_1188_x_x.png" class="w-100" />
+        </a>
+    </div>
+
+    <header>
+        <h3 class="bg-secondary text-light" style="padding-top: 1rem; padding-bottom: 1rem; padding-left: 2vw; font-weight: bold; border-radius: 50px ">
+            Ekran Kartları
+            <a href="/Category/Index?category=ekran-karti" class="text-danger" style="font-size:16px;padding-left:1rem;font-weight:normal">Tümünü Gör</a>
+        </h3>
+    </header>
+
+
+
+    <div class="row">
+        @{
+            count = 0;
+
+
+        }
+        @foreach (var x in Model)
+        {
+            if (x.category_name == "Ekran Kartı" && count < 4)
             {
-<div class="col-3 mb-5 mt-5">
-    <div class="product-card bg-dark" style="border-radius:5%">
-        <div class="d-flex justify-content-between p-3">
-            <p class="lead mb-0 text-light">iPhone 14 Pro Max Gray</p>
-        </div>
-        <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg"
-             class="card-img-top inside-image" alt="Phonel" />
-        <div class="card-body">
-            <div class="d-flex justify-content-between" style="padding-top:1rem">
-                <p class="text-light" style="padding-left:1rem">Phones</p>
-                <p class="h6 lead text-danger" style="padding-right:1rem"><s>$1099</s></p>
-            </div>
 
-            <div class="d-flex justify-content-between mb-3">
-                <h5 class="mb-0 text-light fw-normal" style="padding-left:1rem">Apple Iphone</h5>
-                <h5 class="text-light h3" style="padding-right:1rem">$999</h5>
-            </div>
-            <div class="d-flex justify-content-center">
-                <form class="w-100 d-flex justify-content-center" method="post">
-                    <button type="button" class="btn btn-secondary w-75 mb-3">Sepete Ekle</button>
-                </form>
-            </div>
+                <div class="col-lg-3 mb-5 mt-5">
+                    <div class="product-card bg-dark" style="border-radius:5%">
+                        <div class="d-flex justify-content-between p-3">
+                            <p class="lead mb-0 text-light" style="font-size:12px">@x.name</p>
+                        </div>
+                        <div style="overflow:hidden;">
+                            <a href="/Product/Index?product=@x.Id">
+                                <img src="@x.imageUrl"
+                                     class="card-img-top inside-image" alt="@x.category_name" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between" style="padding-top:1rem">
+                                <p class="text-light" style="padding-left:1rem"><a href="/Category/Index?category=@x.category_insider"> @x.category_name</a></p>
+                                <p class="h6 lead text-danger" style="padding-right:1rem"><s>@((x.price+x.price* 18/100)) ₺</s></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="mb-0 text-light fw-normal" style="padding-left:1rem"></h5>
+                                <h5 class="text-light h3" style="padding-right:1rem">@x.price.ToString("#,##0")₺</h5>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <form class="w-100 d-flex justify-content ps-3 px-3" method="post">
+                                    <button type="button" id="@x.Id" class="btn btn-secondary w-50 mb-3 me-auto sepete-ekle-button">Sepete Ekle</button>
+                                    <button type="button" id="@x.Id" class="mb-3 w-25  iconic" style="border-radius:50px;"><i class="bi bi-heart" style="font-size:150%"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                count++;
+
+            }
+
+
+        }
+    </div>
+
+    <header>
+        <h3 class="bg-secondary text-light" style="padding-top:1rem;padding-bottom:1rem;padding-left:2vw;font-weight:bold;border-radius:50px">
+            İşlemciler
+            <a href="/Category/Index?category=işlemci" class="text-danger" style="font-size:16px;padding-left:1rem;font-weight:normal">Tümünü Gör</a>
+        </h3>
+    </header>
+
+    <div class="row">
+        @{
+            count = 0;
+
+
+        }
+        @foreach (var x in Model)
+        {
+            if (x.category_name == "İşlemci" && count < 4)
+            {
+
+                <div class="col-lg-3 mb-5 mt-5">
+                    <div class="product-card bg-dark" style="border-radius:5%">
+                        <div class="d-flex justify-content-between p-3">
+                            <p class="lead mb-0 text-light" style="font-size:12px">@x.name</p>
+                        </div>
+                        <div style="overflow:hidden;">
+                            <a href="/Product/Index?product=@x.Id">
+                                <img src="@x.imageUrl"
+                                     class="card-img-top inside-image" alt="@x.category_name" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between" style="padding-top:1rem">
+                                <p class="text-light" style="padding-left:1rem"><a href="/Category/Index?category=@x.category_insider"> @x.category_name</a></p>
+                                <p class="h6 lead text-danger" style="padding-right:1rem"><s>@((x.price+x.price* 18/100)) ₺</s></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="mb-0 text-light fw-normal" style="padding-left:1rem"></h5>
+                                <h5 class="text-light h3" style="padding-right:1rem">@x.price.ToString("#,##0")₺</h5>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <form class="w-100 d-flex justify-content ps-3 px-3" method="post">
+                                    <button id="@x.Id" type="button" class="btn btn-secondary w-50 mb-3 me-auto sepete-ekle-button">Sepete Ekle</button>
+                                    <button id="@x.Id" type="button" class="mb-3 w-25  iconic" style="border-radius:50px;"><i class="bi bi-heart" style="font-size:150%"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                count++;
+
+            }
+
+
+        }
+    </div>
+
+
+
+    <div class="card w-100 mb-5">
+        <div class="brand-photos mx-auto">
+            <a href="#" class="me-5" style="text-decoration:none;">
+                <img src="~/Images/HomePage images/nvidiaHome.png"
+                     style="width:150px" />
+            </a>
+            <a href="#" class="me-5" style="text-decoration:none;">
+                <img src="~/Images/HomePage images/razerHome.png"
+                     style="width:120px;" />
+            </a>
+            <a href="#" class="me-5" style="text-decoration:none;">
+                <img src="~/Images/HomePage images/asusHome.png"
+                     style="width:150px;" />
+            </a>
+            <a href="#" class="me-5" style="text-decoration:none;">
+                <img src="~/Images/HomePage images/corsairHome.png"
+                     style="width:150px;" />
+            </a>
+            <a href="#" class="me-5" style="text-decoration:none;">
+                <img src="~/Images/HomePage images/lenovoHome.png"
+                     style="width:150px;" />
+            </a>
+            <a href="#" class="me-5">
+                <img src="~/Images/HomePage images/sandiskHome.png"
+                     style="width:150px;" />
+            </a>
         </div>
     </div>
+
+
 </div>
-            } 
-            </div>
 
+<script>
+    $('.iconic').click(function () {
 
 
+        if ($(this).children().hasClass('bi-heart')) {
+            $(this).children().removeClass('bi-heart');
+            $(this).children().toggleClass('bi-heart-fill');
+        }
 
+        else if ($(this).children().hasClass('bi-heart-fill')) {
+            $(this).children().removeClass('bi-heart-fill');
+            $(this).children().toggleClass('bi-heart');
+        }
 
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center ">
-                            <img src="~/Images/telefon.png" alt="Telefonlar" class="img-fluid">
-                            <h6 class="card-title mt-3 mb-0">Telefonlar</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <img src="~/Images/bilgisayar.png" alt="Bilgisayarlar" class="img-fluid">
-                            <h6 class="card-title mt-3 mb-0">Bilgisayarlar</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <img src="~/Images/oyunVeHobi.png" alt="Oyun ve Hobi" class="img-fluid">
-                            <h6 class="card-title mt-3 mb-0">Oyun ve Hobi</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body text-center">
-                            <img src="~/Images/Aksesuar.png" alt="Aksesuarlar" class="img-fluid">
-                            <h6 class="card-title mt-3 mb-0">Aksesuarlar</h6>
-                        </div>
-                    </div>
-                </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    @*carousel kontrolleri için button ayarları detaylı bakmadım olduğu gibi yapıştırdım*@
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
 
-            </div>
-            <div class="row justify-content-center" style="margin-top:2%">
-                @*listelenen ürünlerin başlığı için bir row etiketi koyuldu*@
-                <div class="col-1 d-flex justify-content-center">
-                    @*col-1 etiketiyle 1/12 uzunluğu Telefonlar yazısı için ayrıldı (sonradan buraya tümünü gör özelliği eklenebilir. justify-content-center -> içeriği kolona tam olarak ortalamak için bootstrap özelliği)*@
-                    <p>Telefonlar</p>
-                </div>
-                <div class="col-11">
-                    @*kalan 11/12 genişliğe hr etiketiyle estetik durması açısından bir çizgi verildi*@
-                    <hr class="new4"></hr>                                                                  @* new4 etiketi style.css dosyası içerisinde kendim verdiğim özellikerle kırmızıya boyadım değiştirilebilir*@
-                </div>
-                <div class="card">
 
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Apple iPhone 14 </p>
+    });
 
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+    $('.iconic').click(function () {
 
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
+        var x = this.id;
 
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
+        // Make an Ajax call to the controller action
+        $.ajax({
+            url: '/Home/AddFavorite',
+            type: 'POST',
+            data: {
 
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>  <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
+                value: x
 
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
+            },
+            success: function (result) {
+                alert("ürün favorilere eklendi");
+            }
+        });
+    });
 
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
 
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="container crsContainer">
-                @*Bootstrap'in içerisinde sağdan ve soldan padding vermeye yarayan container sınıfını dahil edildi*@
-                <div id="carouselExample" class="carousel slide">
-                    @*Bootstrap'in içinde carousel ve slide class'ları eklendi slide daha güzel bir geçiş için oluşturulmuş bir sınıf*@
-                    <div class="carousel-inner">
-                        @*carousel-inner carousel'in içeriği için oluşturulur*@
-                        <a href="https://www.nvidia.com/tr-tr/">
-                            <div class="carousel-item active">
-                                @*carousel-item class özelliği içeriğin bir carousel ürünü oldugunu tanıtmak için verilir (active yazan ilk başlangıçta hangisinin gösterileceğini gösterir)*@
-                                <img src="~/Images/apple-watch-series-6-nylon-banner.jpg" class="d-block w-100 bannerHeight" alt="NVIDIA">       @*w-100 -> %100 genişlik vermek için kullanılıyor bannerHeight'ı yüksekliğini kendim ayarlamak için kendim oluşturdum style.css dosyası içinde özellikleri var*@
-                            </div>
+    $('.sepete-ekle-button').click(function () {
 
+        var x = this.id;
 
-                        </a>
-                        <a href="https://www.apple.com/">
-                            @*tıklandığında siteye yönlendirmek için a href etiketi*@
-                            <div class="carousel-item">
-                                <img src="~/Images/iphone14.jpeg" class="d-block w-100 bannerHeight" alt="Iphone14" />
-                            </div>
-                        </a>
-                        <a href="https://www.samsung.com/>">
-                            <div class="carousel-item">
-                                <img src="~/Images/s22.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
-                            </div>
-                        </a>
-                    </div>
-                    <div>
+  // Make an Ajax call to the controller action
+  $.ajax({
+      url: '/Home/AddBasket',
+      type: 'POST',
+      data: {
 
-                    </div>
+          value: x
 
+    },
+    success: function(result) {
+        alert("ürün sepete eklendi");
+    }
+  });
+});
 
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    @*carousel kontrolleri için button ayarları detaylı bakmadım olduğu gibi yapıştırdım*@
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
 
-            </div>
-
-            <div class="row justify-content-center" style="margin-top:2%">
-                @*listelenen ürünlerin başlığı için bir row etiketi koyuldu*@
-                <div class="col-1 d-flex justify-content-center">
-                    @*col-1 etiketiyle 1/12 uzunluğu Bilgisayar yazısı için ayrıldı (sonradan buraya tümünü gör özelliği eklenebilir. justify-content-center -> içeriği kolona tam olarak ortalamak için bootstrap özelliği)*@
-                    <p>Bilgisayarlar</p>
-                </div>
-                <div class="col-11">
-                    @*kalan 11/12 genişliğe hr etiketiyle estetik durması açısından bir çizgi verildi*@
-                    <hr class="new4"></hr>                                                                  @* new4 etiketi style.css dosyası içerisinde kendim verdiğim özellikerle kırmızıya boyadım değiştirilebilir*@
-                </div>
-                <div class="card">
-
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple">
-
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>  <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row justify-content-center" style="margin-top:2%">
-                @*listelenen ürünlerin başlığı için bir row etiketi koyuldu*@
-                <div class="col-1 d-flex justify-content-center">
-                    @*col-1 etiketiyle 1/12 uzunluğu Telefonlar yazısı için ayrıldı (sonradan buraya tümünü gör özelliği eklenebilir. justify-content-center -> içeriği kolona tam olarak ortalamak için bootstrap özelliği)*@
-                    <p>Çevre Birimleri</p>
-                </div>
-                <div class="col-11">
-                    @*kalan 11/12 genişliğe hr etiketiyle estetik durması açısından bir çizgi verildi*@
-                    <hr class="new4"></hr>                                                                  @* new4 etiketi style.css dosyası içerisinde kendim verdiğim özellikerle kırmızıya boyadım değiştirilebilir*@
-                </div>
-                <div class="card">
-
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple">
-
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>  <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="container crsContainer">
-                @*Bootstrap'in içerisinde sağdan ve soldan padding vermeye yarayan container sınıfını dahil edildi*@
-                <div id="carouselExample" class="carousel slide">
-                    @*Bootstrap'in içinde carousel ve slide class'ları eklendi slide daha güzel bir geçiş için oluşturulmuş bir sınıf*@
-                    <div class="carousel-inner">
-                        @*carousel-inner carousel'in içeriği için oluşturulur*@
-                        <a href="https://www.nvidia.com/tr-tr/">
-                            <div class="carousel-item active">
-                                @*carousel-item class özelliği içeriğin bir carousel ürünü oldugunu tanıtmak için verilir (active yazan ilk başlangıçta hangisinin gösterileceğini gösterir)*@
-                                <img src="~/Images/lenovo-2.jpg" class="d-block w-100 bannerHeight" alt="NVIDIA">       @*w-100 -> %100 genişlik vermek için kullanılıyor bannerHeight'ı yüksekliğini kendim ayarlamak için kendim oluşturdum style.css dosyası içinde özellikleri var*@
-                            </div>
-
-
-                        </a>
-                        <a href="https://www.apple.com/">
-                            @*tıklandığında siteye yönlendirmek için a href etiketi*@
-                            <div class="carousel-item">
-                                <img src="~/Images/iphone14.jpeg" class="d-block w-100 bannerHeight" alt="Iphone14" />
-                            </div>
-                        </a>
-                        <a href="https://www.samsung.com/>">
-                            <div class="carousel-item">
-                                <img src="~/Images/s22.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-
-                    </div>
-
-
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    @*carousel kontrolleri için button ayarları detaylı bakmadım olduğu gibi yapıştırdım*@
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-
-            </div>
-            <div class="row justify-content-center" style="margin-top:2%">
-                @*listelenen ürünlerin başlığı için bir row etiketi koyuldu*@
-                <div class="col-1 d-flex justify-content-center">
-                    @*col-1 etiketiyle 1/12 uzunluğu Telefonlar yazısı için ayrıldı (sonradan buraya tümünü gör özelliği eklenebilir. justify-content-center -> içeriği kolona tam olarak ortalamak için bootstrap özelliği)*@
-                    <p>Aksesuarlar</p>
-                </div>
-                <div class="col-11">
-                    @*kalan 11/12 genişliğe hr etiketiyle estetik durması açısından bir çizgi verildi*@
-                    <hr class="new4"></hr>                                                                  @* new4 etiketi style.css dosyası içerisinde kendim verdiğim özellikerle kırmızıya boyadım değiştirilebilir*@
-                </div>
-                <div class="card">
-
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple">
-
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>  <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg" alt="Apple'm'">
-                    <div class="card-info">
-                        <p class="text-title">Product title </p>
-
-                    </div>
-                    <div class="card-footer">
-                        <span class="text-title">$499.49</span>
-                        <div class="card-button">
-                            <svg class="svg-icon" viewBox="0 0 20 20">
-                                <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z"></path>
-                                <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z"></path>
-                                <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="container mb-5" style="padding-top:100px">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <h2 class="text-center">Çok Satan Markalar</h2>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-2">
-                        <div class="card boyut">
-                            <img src="~/Images/appleLogo.png" width="100" height="150" alt="Marka 1" class="card-img-top">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card boyut">
-                            <img src="~/Images/Samsung.png" width="100" height="150" alt="Marka 2" class="card-img-top">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card boyut">
-                            <img src="~/Images/lenovoLogo.png" width="100" height="150" alt="Marka 3" class="card-img-top">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card boyut">
-                            <img src="~/Images/asus.png" width="100" height="150" alt="Marka 4" class="card-img-top">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card boyut">
-                            <img src="~/Images/indir (4).png" width="100" height="150" alt="Marka 5" class="card-img-top">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card boyut">
-                            <img src="~/Images/indir__10_-removebg-preview.png" width="100" height="150" alt="Marka 6" class="card-img-top">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-
-
-
-    @*<div class="container crsContainer">
-            <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                    <a href="https://www.nvidia.com/tr-tr/">
-                        <div class="carousel-item active">
-                            <img src="~/Images/nvidiaBanner.jpg" class="d-block w-100 bannerHeight" alt="NVIDIA">
-                        </div>
-                    </a>
-                    <a href="https://www.apple.com/">
-                        <div class="carousel-item">
-                            <img src="~/Images/iphone14.jpeg" class="d-block w-100 bannerHeight" alt="Iphone14" />
-                        </div>
-                    </a>
-                    <a href="https://www.samsung.com/>">
-                        <div class="carousel-item">
-                            <img src="~/Images/s22.jpg" class="d-block w-100 bannerHeight" alt="Samsung S22">
-                        </div>
-                    </a>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-            <div>
-                <section class="technological-category">
-
-                    <div class="category-container">
-                        <div class="category-item">
-                            <div class="category-image">
-                                <img src="~/Images/telefon.png" alt="Telefonlar">
-                            </div>
-                            <div class="category-title">Telefonlar</div>
-                        </div>
-                        <div class="category-item">
-                            <div class="category-image">
-                                <img src="~/Images/bilgisayar.png" alt="Bilgisayarlar">
-                            </div>
-                            <div class="category-title">Bilgisayar</div>
-                        </div>
-                        <div class="category-item">
-                            <div class="category-image">
-                                <img src="~/Images/oyunVeHobi.png" alt="Oyun ve Hobi">
-                            </div>
-                            <div class="category-title">Oyun ve Hobi</div>
-                        </div>
-                        <div class="category-item">
-                            <div class="category-image">
-                                <img src="~/Images/Aksesuar.png" alt="Aksesuarlar">
-                            </div>
-                            <div class="category-title">Aksesuarlar</div>
-                        </div>
-                        <div class="category-item">
-                            <div class="category-image">
-                                <img src="~/Images/cevre-birim.png" alt="Çevre Birimleri">
-                            </div>
-                            <div class="category-title">Çevre Birimleri</div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-
-
-
-
-            <div class="row" style="margin-top:2%">
-                <div class="col-1 d-flex justify-content-center">
-                    <p>Telefonlar</p>
-                </div>
-                <div class="col-11">
-                    <hr class="new4"></hr>
-                </div>
-
-            </div>
-            <div style="margin-top:2%">
-                <div class="row">
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-            <div class="row" style="margin-top:2%">
-                <div class="col-1 d-flex justify-content-center">
-                    <p>Telefonlar</p>
-                </div>
-                <div class="col-11">
-                    <hr class="new4"></hr>
-                </div>
-
-            </div>
-            <div style="margin-top:2%">
-                <div class="row">
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center">
-                        <div class="card cardSpec" style="width: 18rem; height:18rem">
-                            <a href="https://www.google.com">
-                                <img src="~/Images/ip14.jpg" class="card-img-top image" alt="ip14">
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text d-flex justify-content-center">Iphone14 Pro Max</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="text-center">Çok Satan Markalar</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="card">
-                        <img src="~/Images/appleLogo.png" width="100" height="150" alt="Marka 1" class="card-img-top">
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card">
-                        <img src="~/Images/Samsung.png" width="100" height="150" alt="Marka 2" class="card-img-top">
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card">
-                        <img src="~/Images/lenovoLogo.png" width="100" height="150" alt="Marka 3" class="card-img-top">
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card">
-                        <img src="~/Images/asus.png" width="100" height="150" alt="Marka 4" class="card-img-top">
-                    </div>
-                </div>
-            </div>
-        </div>*@
+</script>
 
