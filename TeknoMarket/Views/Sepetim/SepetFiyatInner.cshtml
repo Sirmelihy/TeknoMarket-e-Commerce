@@ -1,0 +1,36 @@
+﻿@model List<TeknoMarket.Models.Product>
+
+@{
+    int y = 0;
+    int kargoPrice = 14;
+    int z = 0;
+
+}
+
+@foreach (var x in Model)
+{
+    y += x.price;
+}
+
+@{
+    z = y + kargoPrice ;
+
+}
+
+<div class="d-flex justify-content-between">
+    <p class="mb-2">Ara Toplam:</p>
+    <p class="mb-2">@y.ToString("#,##0") TL</p>
+</div>
+<div class="d-flex justify-content-between">
+    <p class="mb-2">İndirim:</p>
+    <p class="mb-2 text-success">0.00 TL</p>
+</div>
+<div class="d-flex justify-content-between">
+    <p class="mb-2">Kargo:</p>
+    <p class="mb-2">@kargoPrice.ToString(),00 TL</p>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+    <p class="mb-2">Toplam:</p>
+    <p class="mb-2 fw-bold">@z.ToString("#,##0") TL</p>
+</div>

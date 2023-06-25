@@ -20,8 +20,11 @@
         <thead>
 
         <th>Account ID</th>
-        <th>Account username</th>
+        <th>Account email</th>
         <th>Account Password</th>
+        <th>Account name</th>
+        <th>Account surname</th>
+        <th>Account phone</th>
         <th>Account Type</th>
 
         </thead>
@@ -31,10 +34,12 @@
             {
                 <tr>
                     <td>@item.Id</td>
-                    <td>@item.username</td>
+                    <td>@item.email</td>
                     <td>@item.password</td>
+                    <td>@item.name</td>
+                    <td>@item.surname</td>
+                    <td>@item.phone</td>
                     <td>@item.type</td>
-
                 </tr>
             }
         </tbody>
@@ -42,8 +47,6 @@
 </div>
 
 <script src="~/vendor/adminvendor/Datatable.js"></script>
-
-@ViewBag.test
 
 <script>
     $(document).ready(function () {

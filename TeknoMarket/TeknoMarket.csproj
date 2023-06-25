@@ -145,6 +145,20 @@
     <Content Include="Images\Calisma4.dll" />
     <Content Include="Images\cevre-birim.png" />
     <Content Include="Images\G.png" />
+    <Content Include="Images\HomePage images\asusBanner.jpg" />
+    <Content Include="Images\HomePage images\asusHome.png" />
+    <Content Include="Images\HomePage images\corsairBanner.png" />
+    <Content Include="Images\HomePage images\corsairHome.png" />
+    <Content Include="Images\HomePage images\Ekran_Karti_1.jpg" />
+    <Content Include="Images\HomePage images\feecms_1188_x_x.png" />
+    <Content Include="Images\HomePage images\hpHome.png" />
+    <Content Include="Images\HomePage images\lenovoHome.png" />
+    <Content Include="Images\HomePage images\logitechBannerr.jpg" />
+    <Content Include="Images\HomePage images\msiBanner.jpg" />
+    <Content Include="Images\HomePage images\nvidiaHome.png" />
+    <Content Include="Images\HomePage images\RazerBanner.png" />
+    <Content Include="Images\HomePage images\razerHome.png" />
+    <Content Include="Images\HomePage images\sandiskHome.png" />
     <Content Include="Images\images.jpeg" />
     <Content Include="Images\images.png" />
     <Content Include="Images\indir %281%29.jpeg" />
@@ -168,6 +182,8 @@
     <Content Include="Images\nvidiaBanner.jpg" />
     <Content Include="Images\oyunVeHobi.png" />
     <Content Include="Images\pc.svg" />
+    <Content Include="Images\ProductImages\islemciHome.jpg" />
+    <Content Include="Images\ProductImages\ramHome.jpg" />
     <Content Include="Images\s22.jpg" />
     <Content Include="Images\samsun.jpeg" />
     <Content Include="Images\Samsung.png" />
@@ -196,12 +212,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FavorilerController.cs" />
     <Compile Include="Controllers\AdresController.cs" />
     <Compile Include="Controllers\HizmetlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KargoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SepetimController.cs" />
@@ -209,6 +228,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\testModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +258,15 @@
     <Content Include="Views\Sepetim\Index.cshtml" />
     <Content Include="Views\Favoriler\Index.cshtml" />
     <Content Include="Views\Adres\Index.cshtml" />
+    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Product\cokSatanlar.cshtml" />
+    <Content Include="Views\Sepetim\OneriPartial.cshtml" />
+    <Content Include="Views\Sepetim\SepetInner.cshtml" />
+    <Content Include="Views\Sepetim\SepetFiyatInner.cshtml" />
+    <Content Include="Views\Favoriler\favoriInner.cshtml" />
+    <Content Include="Views\Favoriler\favoriOneriPartial.cshtml" />
+    <Content Include="Views\Kargo\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -246,6 +276,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

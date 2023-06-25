@@ -6,11 +6,14 @@ using System.Web.Mvc;
 
 namespace TeknoMarket.Controllers
 {
-    public class AdresController : Controller
+    public class ContactController : Controller
     {
-        // GET: Adres
+        // GET: Contact
         public ActionResult Index()
         {
+
+
+
 
 
 

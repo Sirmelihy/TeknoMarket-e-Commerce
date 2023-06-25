@@ -1,4 +1,5 @@
-﻿
+﻿@model List<TeknoMarket.Models.Product>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -51,38 +52,38 @@
                     <div class="filter-content collapse show" id="collapse_2" style="">
                         <div class="card-body">
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
+                                <input type="checkbox"  class="custom-control-input">
                                 <div class="custom-control-label">
-                                    Mercedes
-                                    <b class="badge badge-pill badge-light float-right">120</b>
+                                    ASUS
+                                    <b class="badge badge-pill badge-light float-right">5</b>
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
+                                <input type="checkbox"  class="custom-control-input">
                                 <div class="custom-control-label">
-                                    Toyota
-                                    <b class="badge badge-pill badge-light float-right">15</b>
+                                    AMD
+                                    <b class="badge badge-pill badge-light float-right">2</b>
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
+                                <input type="checkbox"  class="custom-control-input">
                                 <div class="custom-control-label">
-                                    Mitsubishi
-                                    <b class="badge badge-pill badge-light float-right">35</b>
+                                    INTEL
+                                    <b class="badge badge-pill badge-light float-right">3</b>
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" checked="" class="custom-control-input">
+                                <input type="checkbox"  class="custom-control-input">
                                 <div class="custom-control-label">
-                                    Nissan
-                                    <b class="badge badge-pill badge-light float-right">89</b>
+                                    NVIDIA
+                                    <b class="badge badge-pill badge-light float-right">1</b>
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input">
                                 <div class="custom-control-label">
-                                    Honda
-                                    <b class="badge badge-pill badge-light float-right">30</b>
+                                    MSI
+                                    <b class="badge badge-pill badge-light float-right">6</b>
                                 </div>
                             </label>
                         </div> <!-- card-body.// -->
@@ -100,19 +101,19 @@
                             @*<input type="range" class="custom-range" min="0" max="100" name="">*@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label>Min</label>
-                                    <input class="form-control" placeholder="$0" type="number">
+                                    <label>En Düşük</label>
+                                    <input class="form-control" placeholder="0₺" type="number">
                                 </div>
                                 <div class="form-group text-right col-md-6">
-                                    <label>Max</label>
-                                    <input class="form-control" placeholder="$1,0000" type="number">
+                                    <label>En Yüksek</label>
+                                    <input class="form-control" placeholder="1,0000₺" type="number">
                                 </div>
                             </div> <!-- form-row.// -->
-                            <button class="btn btn-block btn-dark">Apply</button>
+                            <button class="btn btn-block btn-dark">Uygula</button>
                         </div><!-- card-body.// -->
                     </div>
                 </article> <!-- filter-group .// -->
-                <article class="filter-group">
+                <!--<article class="filter-group">
                     <header class="card-header">
                         <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
                             <h6 class="title text-dark">Boyut </h6>
@@ -139,36 +140,36 @@
                                 <input type="checkbox">
                                 <span class="btn btn-light"> XXL </span>
                             </label>
-                        </div><!-- card-body.// -->
-                    </div>
-                </article> <!-- filter-group .// -->
+                        </div>--><!-- card-body.// -->
+                    <!--</div>
+                </article>--> <!-- filter-group .// -->
                 <article class="filter-group">
                     <header class="card-header">
                         <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
                             <i class="icon-control fa fa-chevron-down"></i>
-                            <h6 class="title text-dark">More filter </h6>
+                            <h6 class="title text-dark">Daha Fazla Filtre </h6>
                         </a>
                     </header>
                     <div class="filter-content collapse in" id="collapse_5" style="">
                         <div class="card-body">
                             <label class="custom-control custom-radio">
                                 <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
-                                <div class="custom-control-label">Any condition</div>
+                                <div class="custom-control-label">Herhangi bir durumda</div>
                             </label>
 
                             <label class="custom-control custom-radio">
                                 <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                <div class="custom-control-label">Brand new </div>
+                                <div class="custom-control-label">Yepyeni </div>
                             </label>
 
                             <label class="custom-control custom-radio">
                                 <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                <div class="custom-control-label">Used items</div>
+                                <div class="custom-control-label">Kullanılmış</div>
                             </label>
 
                             <label class="custom-control custom-radio">
                                 <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                <div class="custom-control-label">Very old</div>
+                                <div class="custom-control-label">Çok eski </div>
                             </label>
                         </div><!-- card-body.// -->
                     </div>
@@ -180,7 +181,7 @@
 
             <header class="border-bottom mb-4 pb-3">
                 <div class="form-inline">
-                    <span class="mr-md-auto">X Adet ürün bulundu </span>
+                    <span class="mr-md-auto">@Model.Count Adet ürün bulundu </span>
                     <select class="mr-2 form-control">
                         <option>Latest items</option>
                         <option>Trending</option>
@@ -199,59 +200,129 @@
             </header><!-- sect-heading -->
 
             <div class="row">
-                @for(int i = 0;i<12;i++)
-            {
-<div class="col-4 mb-5">
-    <div class="product-card bg-dark" style="border-radius:15px">
-        <div class="d-flex justify-content-between p-3">
-            <p class="lead mb-0 text-light">iPhone 14 Pro Max Gray</p>
-        </div>
-        <img src="~/Images/iphone-14-pro-finish-unselect-ga.jpg"
-             class="card-img-top inside-image" alt="Phonel" />
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <p class="fw-bold"><a href="#!" class="text-muted">Phones</a></p>
-                <p class="h6 lead text-danger"><s>$1099</s></p>
-            </div>
 
-            <div class="d-flex justify-content-between mb-3">
-                <h5 class="mb-0 text-light fw-normal">Apple Iphone</h5>
-                <h5 class="text-light h3 mb-0">$999</h5>
-            </div>
+                @foreach (var x in Model)
+                {
 
-            <div class="d-flex justify-content-between">
-                <p class="text-white mb-0">Stok: <span class="fw-bold">6</span></p>
-                <div class="ms-auto text-warning">
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <form class="w-100 d-flex justify-content-center" method="post">
-                    <button type="button" class="btn btn-secondary w-75 mt-3">Sepete Ekle</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-            }
-                
+                    <div class="col-4 mb-5">
+                        <div class="product-card bg-dark" style="border-radius:15px">
+                            <div class="d-flex justify-content-between p-3">
+                                <p class="lead mb-0 text-light" style="font-size:12px">@x.name</p>
+                            </div>
+                            <a href="/Product/Index?product=@x.Id">
+                                <img src="@x.imageUrl"
+                                     class="card-img-top inside-image" alt="Phonel" />
+                            </a>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <p class="fw-bold"><a href="/Category/Index?category=ekran-karti" class="text-muted">Ekran Kartı</a></p>
+                                    <p class="h6 lead text-danger"><s>$1099</s></p>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0 text-light fw-normal"></h5>
+                                    <h4 class="text-light h3 mb-0">@x.price.ToString("#,##0")₺</h4>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-white mb-0">Stok: <span class="fw-bold">@x.stock</span></p>
+                                    <div class="ms-auto text-warning">
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <form class="w-100 d-flex justify-content-center" method="post">
+                                        <button type="button" id="@x.Id" class="btn btn-secondary w-75 mt-3 sepete-ekle-button">Sepete Ekle</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+                @*@for (int i = 0; i < 12; i++)
+                {
+                    <div class="col-4 mb-5">
+                        <div class="product-card bg-dark" style="border-radius:15px">
+                            <div class="d-flex justify-content-between p-3">
+                                <p class="lead mb-0 text-light">iPhone 14 Pro Max Gray</p>
+                            </div>
+                            <img src="~/Images/HomePage images/Ekran_Karti_1.jpg"
+                                 class="card-img-top inside-image" alt="Phonel" />
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <p class="fw-bold"><a href="#!" class="text-muted">Phones</a></p>
+                                    <p class="h6 lead text-danger"><s>$1099</s></p>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0 text-light fw-normal">Apple Iphone</h5>
+                                    <h5 class="text-light h3 mb-0">$999</h5>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-white mb-0">Stok: <span class="fw-bold">6</span></p>
+                                    <div class="ms-auto text-warning">
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <form class="w-100 d-flex justify-content-center" method="post">
+                                        <button type="button" class="btn btn-secondary w-75 mt-3">Sepete Ekle</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }*@
+
             </div>
 
 
             @*<nav class="mt-4" aria-label="Page navigation sample">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>*@
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>*@
 
         </main>
     </div>
 </div>
+
+adasdasd
+<div>@ViewBag.test</div>
+
+<script>
+    $('.sepete-ekle-button').click(function () {
+
+        var x = this.id;
+
+        // Make an Ajax call to the controller action
+        $.ajax({
+            url: '/Home/AddBasket',
+            type: 'POST',
+            data: {
+
+                value: x
+
+            },
+            success: function (result) {
+                alert("ürün sepete eklendi");
+            }
+        });
+    });
+</script>

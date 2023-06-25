@@ -1,4 +1,4 @@
-﻿@model List<TeknoMarket.Models.testModel>
+﻿@model List<TeknoMarket.Models.Product>
 @{
     ViewBag.Title = "testList";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -19,6 +19,10 @@
 
         <th>Product ID</th>
         <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Product Stock</th>
+        <th>Product Description</th>
+
 
         </thead>
 
@@ -26,8 +30,11 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.productid</td>
-                    <td>@item.productname</td>
+                    <td>@item.Id</td>
+                    <td>@item.name</td>
+                    <td>@item.price ₺</td>
+                    <td>@item.stock</td>
+                    <td>@item.description</td>
                 </tr>
             }
         </tbody>

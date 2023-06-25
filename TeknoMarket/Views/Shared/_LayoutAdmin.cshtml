@@ -20,7 +20,7 @@
 </head>
 <body>
 
-    
+
 
     <script>
 
@@ -34,14 +34,14 @@
                     <a href="/Admin/testlist" class="list-group-item list-group-item-action py-2 ripple testlist" aria-current="true"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Ürün Listele</span></a>
                     <a href="/Admin/AddProduct" class="list-group-item list-group-item-action py-2 ripple "><i class="fas fa-chart-area fa-fw me-3"></i><span>Ürün Ekle</span></a>
                     <a href="/Admin/listAccounts" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Hesap Listele</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>x</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-pie fa-fw me-3"></i><span>x</span></a>
+                    <a href="/Admin/AddCategory" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>Kategori Ekle</span></a>
+                    @*<a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-pie fa-fw me-3"></i><span>x</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-bar fa-fw me-3"></i><span>x</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-globe fa-fw me-3"></i><span>x</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-building fa-fw me-3"></i><span>x</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-calendar fa-fw me-3"></i><span>x</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-users fa-fw me-3"></i><span>x</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-money-bill fa-fw me-3"></i><span>x</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-money-bill fa-fw me-3"></i><span>x</span></a>*@
                 </div>
             </div>
         </nav>
@@ -63,7 +63,7 @@
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#" style="margin-left:50px">
+                <a class="navbar-brand" href="/Admin/testlist" style="margin-left:50px">
                     <img src="~/Images/teknomarketcropped.png"
                          height="50px"
                          width="100px"
@@ -106,7 +106,7 @@
                                 <a class="dropdown-item" href="#">Settings</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" id="logoutLink" href="/Home/Anasayfa/">Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -126,6 +126,24 @@
         </div>
     </main>
     <!--Main layout-->
+
+    <script>
+$(document).ready(function() {
+    $('#logoutLink').click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '@Url.Action("Logout", "Account")',
+            type: 'POST',
+            success: function(response) {
+                 window.location.href = '/Home/Anasayfa';
+            },
+            error: function(xhr, status, error) {
+            }
+        });
+    });
+});
+
+    </script>
 
 </body>
 </html>

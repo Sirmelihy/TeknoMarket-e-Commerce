@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace TeknoMarket.Controllers
 {
-    public class AdresController : Controller
+    public class KargoController : Controller
     {
-        // GET: Adres
+        // GET: Kargo
         public ActionResult Index()
         {
 

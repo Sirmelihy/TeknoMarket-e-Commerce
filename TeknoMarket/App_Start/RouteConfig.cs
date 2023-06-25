@@ -14,6 +14,18 @@ namespace TeknoMarket
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Product",
+                url: "Index/{category}",
+                defaults: new { controller = "Product", action = "Index", category = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Category",
+                url: "Index/{category}",
+                defaults: new { controller = "Category", action = "Index", category = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Anasayfa", id = UrlParameter.Optional }
